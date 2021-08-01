@@ -1,0 +1,90 @@
+<style>
+    .results-container{
+        width: 100%;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(220, 220, 220);
+    }
+    .results-header{
+        align-self: flex-start;
+        display: inline;
+        font-size: 4.5vmin;
+        font-weight: 600;
+        margin: 3vmin 0 3vmin 10vw;
+        font-family: Arial, Helvetica, sans-serif; 
+    }
+    .found{
+        align-self: flex-start;
+        margin: 0 0 3vmin 10vw;
+        display: inline;
+        font-size: 3.5vmin;
+        color: rgb(100, 100, 100)
+    }
+
+    .results{
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .result{
+        display: flex;
+        background-color: white;
+        margin-bottom: 4vmin;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .img{
+        max-width: 20vw;
+        height: 25vh;  
+           
+    }
+    .img img{
+        max-width: 20vw;
+        height: 100%;
+    }
+    .basic_info{
+        width: 57vw;
+        height: 25vh;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .title{
+        font-size: 4.5vmin;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .released_date{
+        font-size: 3.2vmin;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: rgb(100, 100, 100);
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<div class="results-container" th:object="${searchResults}">
+    <h1 class="results-header" th:text="'Search Results for: ' + ${searchKey}"></h1>
+    <h2 class="found" th:text="'Found ' + *{total_results}"></h2>
+    <div class="results">
+            <div th:each="result : *{results}">
+                <a th:href="@{${result.media_type} + '/' + ${result.id}}">
+                    <div class="result">
+                        <div class="img">       
+                           <img th:src="@{'https://image.tmdb.org/t/p/w500' + ${result.poster_path}}" alt="">                
+                        </div>
+                        <div class="basic_info">
+                            <h1 class="title" th:text="${result.title}"></h1>
+                            <p class="realeased_date" th:text="${result.release_date}"></p>
+                            <p class="overview" th:text="${result.overview}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+    </div>
+</div>
