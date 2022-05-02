@@ -1,7 +1,7 @@
 # movie-thymeleaf
 
 Landing Page:
-![Landinh page](./screenshots/langing.png)
+![Landing page](./screenshots/landing.png)
 
 Movie Info Page:
 ![Landinh page](./screenshots/info.png)
